@@ -1,0 +1,95 @@
+﻿<h2>Health Catalyst - People Search Application</h2>
+<p>
+    <a href="#/addperson" class="btn btn-primary">Add Person</a>
+</p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        People
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group pull-left">
+                    <label>Search</label>
+                    <label>
+                        <input type="text" class="form-control" ng-model="searchText" style="font-weight: normal" />
+                    </label>
+                    <a href="#/searchPeople" class="btn btn-primary">Search People</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group pull-right">
+                    Show
+                    <label>
+                        <select class="form-control" ng-model="itemsPerPage" style="font-weight: normal">
+                            <option ng-value="1">1</option>
+                            <option ng-value="2">2</option>
+                            <option ng-value="5">5</option>
+                            <option ng-value="10">10</option>
+                            <option ng-value="25">25</option>
+                            <option ng-value="50">50</option>
+                        </select>
+                    </label>
+                    Entries
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th ng-click="sortBy('FirstName')">
+                        Name
+                        <span class="glyphicon" ng-show="sortColumn=='FirstName'" ng-class="{'glyphicon-triangle-top': !reverse, 'glyphicon-triangle-bottom': reverse}"></span>
+                    </th>
+                    <th ng-click="sortBy('LastName')">
+                        Email
+                        <span class="glyphicon" ng-show="sortColumn=='LastName'" ng-class="{'glyphicon-triangle-top': !reverse, 'glyphicon-triangle-bottom': reverse}"></span>
+                    </th>
+                    <th ng-click="sortBy('Age')">
+                        Email
+                        <span class="glyphicon" ng-show="sortColumn=='Age'" ng-class="{'glyphicon-triangle-top': !reverse, 'glyphicon-triangle-bottom': reverse}"></span>
+                    </th>
+                    <th ng-click="sortBy('Interests')">
+                        Email
+                        <span class="glyphicon" ng-show="sortColumn=='Interests'" ng-class="{'glyphicon-triangle-top': !reverse, 'glyphicon-triangle-bottom': reverse}"></span>
+                    </th>
+                    <th ng-click="sortBy('Address')">
+                        Address
+                        <span class="glyphicon" ng-show="sortColumn=='Address'" ng-class="{'glyphicon-triangle-top': !reverse, 'glyphicon-triangle-bottom': reverse}"></span>
+                    </th>
+                    <th>Ops.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="p in personList| orderBy: sortColumn: reverse | limitTo: itemsPerPage: (currentPage - 1) * itemsPerPage">
+                    <td>{{p.FirstName}}</td>
+                    <td>{{p.LastName}}</td>
+                    <td>{{p.Age}}</td>
+                    <td>{{p.Interests}}</td>
+                    <td>{{p.Address}}</td>
+                    <td>
+                        <a href="" ng-click="deletePerson(p.Id)">Delete</a>
+                    </td>
+                </tr>
+                <tr ng-if="!personList || personList.length == 0">
+                    <td colspan="6" style="text-align: center">
+                        No people to display
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="pull-left">
+                    <br />
+                    <pre>Page: {{currentPage}}/{{numPages}}</pre>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="pull-right">
+                    <ul uib-pagination total-items="personList.length" items-per-page="itemsPerPage" ng-model="currentPage" max-size="5" boundary-links="true" num-pages="numPages"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

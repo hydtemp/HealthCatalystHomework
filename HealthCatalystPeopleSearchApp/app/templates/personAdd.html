@@ -1,0 +1,92 @@
+﻿<h2>Health Catalyst - People Search Application</h2>
+<form class="form-horizontal" name="frmAddPerson" ng-submit="createPerson(persondto)" novalidate>
+    <h4>Add A New Person</h4>
+    <hr />
+    <div class="form-group">
+        <label class="col-lg-2 control-label">First Name</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" name="firstname" ng-model="persondto.FirstName" required />
+            <span class="text-danger" ng-show="(frmAddPerson.firstname.$touched || frmAddPerson.firstname.$dirty) && frmAddPerson.firstname.$invalid">
+                <span ng-show="frmAddPerson.firstname.$error.required">First name must be specified</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Last Name</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" name="lastname" ng-model="persondto.LastName" ng-maxlength="50" required />
+            <span class="text-danger" ng-show="(frmAddPerson.lastname.$touched || frmAddPerson.lastname.$dirty) && frmAddPerson.lastname.$invalid">
+                <span ng-show="frmAddPerson.lastname.$error.required">Last name must be specified</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Age</label>
+        <div class="col-lg-10">
+            <input type="number" class="form-control" name="age" ng-model="persondto.Age" required ng-pattern="/^-?[0-9][^\.]*$/" />
+            <span class="text-danger" ng-show="(frmAddPerson.age.$touched || frmAddPerson.age.$dirty) && frmAddPerson.age.$invalid">
+                <span ng-show="frmAddPerson.age.$error.required">Age must be specified</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Interests</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" name="interests" ng-model="persondto.Interests" ng-maxlength="50" required />
+            <span class="text-danger" ng-show="(frmAddPerson.interests.$touched || frmAddPerson.interests.$dirty) && frmAddPerson.interests.$invalid">
+                <span ng-show="frmAddPerson.interests.$error.required">Interests must be specified</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Street Address</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" name="streetaddress" ng-model="persondto.StreetAddress" required />
+            <span class="text-danger" ng-show="(frmAddPerson.streetaddress.$touched || frmAddPerson.streetaddress.$dirty) && (frmAddPerson.streetaddress.$invalid)">
+                <span ng-show="frmAddPerson.streetaddress.$error.required">Street Address must be specified</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">City</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" name="city" ng-model="persondto.City" required />
+            <span class="text-danger" ng-show="(frmAddPerson.city.$touched || frmAddPerson.city.$dirty) && (frmAddPerson.city.$invalid)">
+                <span ng-show="frmAddPerson.city.$error.required">City must be specified</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">State</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" name="state" ng-model="persondto.State" required />
+            <span class="text-danger" ng-show="(frmAddPerson.state.$touched || frmAddPerson.state.$dirty) && (frmAddPerson.state.$invalid)">
+                <span ng-show="frmAddPerson.state.$error.required">State must be specified</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Zip Code</label>
+        <div class="col-lg-10">
+            <input type="number" class="form-control" name="zipcode" ng-model="persondto.ZipCode" required />
+            <span class="text-danger" ng-show="(frmAddPerson.zipcode.$touched || frmAddPerson.zipcode.$dirty) && (frmAddPerson.zipcode.$invalid)">
+                <span ng-show="frmAddPerson.zipcode.$error.required">Zip Code must be specified</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Country</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" name="country" ng-model="persondto.Country" required />
+            <span class="text-danger" ng-show="(frmAddPerson.country.$touched || frmAddPerson.country.$dirty) && (frmAddPerson.country.$invalid)">
+                <span ng-show="frmAddPerson.country.$error.required">Country must be specified</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <input type="submit" class="btn btn-success" value="Create" ng-disabled="frmAddPerson.$invalid" />
+            <a href="#/" class="btn btn-default">Cancel</a>
+        </div>
+    </div>
+</form>
