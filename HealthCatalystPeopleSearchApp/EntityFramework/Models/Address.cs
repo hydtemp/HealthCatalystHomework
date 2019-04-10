@@ -24,6 +24,14 @@ namespace HealthCatalystPeopleSearchApp.EntityFramework.Models
         [Required]
         public string Country { get; set; }
 
+        [NotMapped]
+        public string DisplayFormat {
+            get
+            {
+                return this.ToString();
+            }
+        }
+
         public override string ToString()
         {
             return string.Format("{0}, {1} {2} {3} {4}", StreetAddress, City, State, ZipCode, Country);

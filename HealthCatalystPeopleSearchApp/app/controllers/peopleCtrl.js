@@ -6,15 +6,20 @@
             $scope.personList = [];
             $scope.currentPage = 1;
             $scope.itemsPerPage = 5;
+            $scope.dataLoading = false;
+            $scope.searchText = "";
 
             getData();
 
             function getData() {
+                $scope.dataLoading = true;
                 dataService.getPeople().then(function (result) {
-                    $scope.$watch('searchText', function (term) {
-                        $scope.personList = $filter('filter')(result, term);
+                    $scope.dataLoading = false;
+                    $scope.personList = result;
+                })
+                    .finally(function () {
+                        $scope.dataLoading = false;
                     });
-                });
             }
 
             $scope.deletePerson = function (id) {
@@ -26,6 +31,18 @@
                 });
             };
 
+            $scope.searchPeople = function (searchText) {
+                $scope.dataLoading = true;
+                dataService.searchPeople(searchText).then(function (result) {
+                    $scope.dataLoading = false;
+                    $scope.personList = result;
+                }, function () {
+                    toastr.error('Error in fetching people that match search term: ' + searchText);
+                }).finally(function () {
+                    $scope.dataLoading = false;
+                });
+            };
+
             $scope.sortBy = function (column) {
                 $scope.sortColumn = column;
                 $scope.reverse = !$scope.reverse;
@@ -34,16 +51,16 @@
         .controller('personAddCtrl', ['$scope', '$location', 'dataService', function ($scope, $location, dataService) {
             $scope.createPerson = function (persondto) {
                 var person = {
-                    FirstName: persondto.FirstName,
-                    LastName: persondto.LastName,
+                    FirstName: persondto.FirstName.trim(),
+                    LastName: persondto.LastName.trim(),
                     Age: persondto.Age,
-                    Interests: persondto.Interests,
+                    Interests: persondto.Interests.trim(),
                     address: {
-                        StreetAddress: persondto.StreetAddress,
-                        City: persondto.City,
-                        State: persondto.State,
+                        StreetAddress: persondto.StreetAddress.trim(),
+                        City: persondto.City.trim(),
+                        State: persondto.State.trim(),
                         ZipCode: persondto.ZipCode,
-                        Country: persondto.Country
+                        Country: persondto.Country.trim()
                     }
                 };
                 dataService.addPerson(person).then(function () {

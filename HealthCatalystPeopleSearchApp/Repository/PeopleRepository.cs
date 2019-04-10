@@ -1,6 +1,5 @@
 ﻿using HealthCatalystPeopleSearchApp.EntityFramework.Context;
 using HealthCatalystPeopleSearchApp.EntityFramework.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -40,14 +39,15 @@ namespace HealthCatalystPeopleSearchApp.Repository
 
             if (string.IsNullOrEmpty(searchString))
             {
+                //retrn all people if no specific search term was provided
                 return GetPersonList();
             }
             else
             {
-
+                //filter on first and last name. search is case insensitive
                 persons = _dbContext.Person.Where(p =>
-                        (!string.IsNullOrEmpty(p.LastName) && p.LastName.ToLower().Contains(searchString)) ||
-                        (!string.IsNullOrEmpty(p.FirstName) && p.FirstName.ToLower().Contains(searchString))
+                        (!string.IsNullOrEmpty(p.LastName) && p.LastName.ToLower().Contains(searchString.ToLower())) ||
+                        (!string.IsNullOrEmpty(p.FirstName) && p.FirstName.ToLower().Contains(searchString.ToLower()))
                 ).OrderBy(p => p.LastName).Include(p => p.Address).ToList();
             }
 
@@ -56,7 +56,7 @@ namespace HealthCatalystPeopleSearchApp.Repository
 
         void IPeopleRepository.DeletePerson(int personId)
         {
-            var person = GetPerson(personId);
+            Person person = GetPerson(personId);
             _dbContext.Person.Remove(person);
             _dbContext.CommitChanges();
         }

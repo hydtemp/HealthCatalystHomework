@@ -10,12 +10,12 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="form-group pull-left">
-                    <label>Search</label>
+                    <label>Search: </label>
                     <label>
                         <input type="text" class="form-control" ng-model="searchText" style="font-weight: normal" />
                     </label>
-                    <a href="#/searchPeople" class="btn btn-primary">Search People</a>
-                </div>
+                </div>&nbsp;&nbsp;
+                <button type="submit" class="btn btn-primary" ng-click="searchPeople(searchText)">Search People</button>
             </div>
             <div class="col-lg-6">
                 <div class="form-group pull-right">
@@ -34,23 +34,23 @@
                 </div>
             </div>
         </div>
-        <table class="table table-bordered">
+        <table class="table table-bordered table-fixed">
             <thead>
                 <tr>
                     <th ng-click="sortBy('FirstName')">
-                        Name
+                        First Name
                         <span class="glyphicon" ng-show="sortColumn=='FirstName'" ng-class="{'glyphicon-triangle-top': !reverse, 'glyphicon-triangle-bottom': reverse}"></span>
                     </th>
                     <th ng-click="sortBy('LastName')">
-                        Email
+                        Last Name
                         <span class="glyphicon" ng-show="sortColumn=='LastName'" ng-class="{'glyphicon-triangle-top': !reverse, 'glyphicon-triangle-bottom': reverse}"></span>
                     </th>
                     <th ng-click="sortBy('Age')">
-                        Email
+                        Age
                         <span class="glyphicon" ng-show="sortColumn=='Age'" ng-class="{'glyphicon-triangle-top': !reverse, 'glyphicon-triangle-bottom': reverse}"></span>
                     </th>
                     <th ng-click="sortBy('Interests')">
-                        Email
+                        Interests
                         <span class="glyphicon" ng-show="sortColumn=='Interests'" ng-class="{'glyphicon-triangle-top': !reverse, 'glyphicon-triangle-bottom': reverse}"></span>
                     </th>
                     <th ng-click="sortBy('Address')">
@@ -61,17 +61,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="p in personList| orderBy: sortColumn: reverse | limitTo: itemsPerPage: (currentPage - 1) * itemsPerPage">
+                <tr ng-if="!dataLoading" ng-repeat="p in personList| orderBy: sortColumn: reverse | limitTo: itemsPerPage: (currentPage - 1) * itemsPerPage">
                     <td>{{p.FirstName}}</td>
                     <td>{{p.LastName}}</td>
                     <td>{{p.Age}}</td>
                     <td>{{p.Interests}}</td>
-                    <td>{{p.Address}}</td>
+                    <td>{{p.Address.DisplayFormat}}</td>
                     <td>
                         <a href="" ng-click="deletePerson(p.Id)">Delete</a>
                     </td>
                 </tr>
-                <tr ng-if="!personList || personList.length == 0">
+                <tr ng-if="dataLoading">
+                    <td name="loadingMsg" colspan="6" style="text-align: center">
+                        Loading data...
+                    </td>
+                </tr>
+                <tr ng-if="!dataLoading && (!personList || personList.length == 0)">
                     <td colspan="6" style="text-align: center">
                         No people to display
                     </td>

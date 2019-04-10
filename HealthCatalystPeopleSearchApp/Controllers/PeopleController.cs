@@ -52,12 +52,13 @@ namespace HealthCatalystPeopleSearchApp.Controllers
             }
         }
 
+        [System.Web.Http.HttpPost]
         public IEnumerable<Person> Search(string searchString)
         {
             using (_peopleRepository)
             {
-                Thread.Sleep(3000); //simulate 3 seconds delay when searching. OK to lock the main thread. 
-                List<Person> personList = _peopleRepository.SearchPeople(searchString.ToLower()).ToList();
+                Thread.Sleep(3000); //simulate 3 seconds delay when searching. OK to lock the main thread.
+                List<Person> personList = _peopleRepository.SearchPeople(searchString).ToList();
                 return personList;
             }
         }

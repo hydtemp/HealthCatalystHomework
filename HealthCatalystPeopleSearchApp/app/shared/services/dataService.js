@@ -16,9 +16,9 @@
                 return deferred.promise;
             };
 
-            service.searchPeople = function (term) {
+            service.searchPeople = function (searchText) {
                 var deferred = $q.defer();
-                $http.get('api/people/searchpeople', term).then(function (result) {
+                $http.post('api/people/search?searchstring=' + searchText).then(function (result) {
                     deferred.resolve(result.data);
                 }, function () {
                     deferred.reject();

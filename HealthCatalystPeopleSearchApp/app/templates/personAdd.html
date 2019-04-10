@@ -23,16 +23,17 @@
     <div class="form-group">
         <label class="col-lg-2 control-label">Age</label>
         <div class="col-lg-10">
-            <input type="number" class="form-control" name="age" ng-model="persondto.Age" required ng-pattern="/^-?[0-9][^\.]*$/" />
+            <input type="text" class="form-control" name="age" ng-model="persondto.Age" ng-pattern="/^[0-9]{1,3}$/" required />
             <span class="text-danger" ng-show="(frmAddPerson.age.$touched || frmAddPerson.age.$dirty) && frmAddPerson.age.$invalid">
                 <span ng-show="frmAddPerson.age.$error.required">Age must be specified</span>
+                <span ng-show="frmAddPerson.age.$error.pattern">Age must be a non-negative integer between 0 and 999.</span>
             </span>
         </div>
     </div>
     <div class="form-group">
         <label class="col-lg-2 control-label">Interests</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" name="interests" ng-model="persondto.Interests" ng-maxlength="50" required />
+            <input type="text" class="form-control" name="interests" ng-model="persondto.Interests" required />
             <span class="text-danger" ng-show="(frmAddPerson.interests.$touched || frmAddPerson.interests.$dirty) && frmAddPerson.interests.$invalid">
                 <span ng-show="frmAddPerson.interests.$error.required">Interests must be specified</span>
             </span>
@@ -68,9 +69,10 @@
     <div class="form-group">
         <label class="col-lg-2 control-label">Zip Code</label>
         <div class="col-lg-10">
-            <input type="number" class="form-control" name="zipcode" ng-model="persondto.ZipCode" required />
+            <input type="number" class="form-control" name="zipcode" ng-model="persondto.ZipCode" ng-pattern="/^[0-9]{5}$/" required />
             <span class="text-danger" ng-show="(frmAddPerson.zipcode.$touched || frmAddPerson.zipcode.$dirty) && (frmAddPerson.zipcode.$invalid)">
                 <span ng-show="frmAddPerson.zipcode.$error.required">Zip Code must be specified</span>
+                <span ng-show="frmAddPerson.zipcode.$error.pattern">Zip code must be a a 5 digit non-negative integer.</span>
             </span>
         </div>
     </div>
@@ -85,7 +87,7 @@
     </div>
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-            <input type="submit" class="btn btn-success" value="Create" ng-disabled="frmAddPerson.$invalid" />
+            <input type="submit" class="btn btn-success" value="Add" ng-disabled="frmAddPerson.$invalid" />
             <a href="#/" class="btn btn-default">Cancel</a>
         </div>
     </div>
