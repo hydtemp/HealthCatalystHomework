@@ -57,6 +57,9 @@
                         Address
                         <span class="glyphicon" ng-show="sortColumn=='Address'" ng-class="{'glyphicon-triangle-top': !reverse, 'glyphicon-triangle-bottom': reverse}"></span>
                     </th>
+                    <th>Picture
+                        <span class="glyphicon" ng-class="{'glyphicon-triangle-top': !reverse, 'glyphicon-triangle-bottom': reverse}"></span>
+                    </th>
                     <th>Ops.</th>
                 </tr>
             </thead>
@@ -67,17 +70,18 @@
                     <td>{{p.Age}}</td>
                     <td>{{p.Interests}}</td>
                     <td>{{p.Address.DisplayFormat}}</td>
+                    <td><img class="imgSmall" ng-src="data:image/JPEG;base64,{{p.Image}}" /></td>
                     <td>
                         <a href="" ng-click="deletePerson(p.Id)">Delete</a>
                     </td>
                 </tr>
                 <tr ng-if="dataLoading">
-                    <td name="loadingMsg" colspan="6" style="text-align: center">
+                    <td name="loadingMsg" colspan="7" style="text-align: center">
                         Loading data...
                     </td>
                 </tr>
                 <tr ng-if="!dataLoading && (!personList || personList.length == 0)">
-                    <td colspan="6" style="text-align: center">
+                    <td colspan="7" style="text-align: center">
                         No people to display
                     </td>
                 </tr>

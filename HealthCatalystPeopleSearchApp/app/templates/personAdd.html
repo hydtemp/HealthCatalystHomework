@@ -86,8 +86,17 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="col-lg-2 control-label" for="image">Picture</label>
+        <div class="col-lg-10">
+            <input type="file" class="form-control" name="picture" fileread="uploadme.src" ng-model="uploadme.src" ngf-pattern="'image/*'"accept="image/*" ngf-max-size="2MB" required/>
+            <span class="text-danger" ng-show="(frmAddPerson.picture.$touched || frmAddPerson.picture.$dirty) && (frmAddPerson.picture.$invalid)">
+                <span ng-show="frmAddPerson.picture.$error.required">Picture must be selected</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-            <input type="submit" class="btn btn-success" value="Add" ng-disabled="frmAddPerson.$invalid" />
+            <input type="submit" class="btn btn-success" value="Add" ng-disabled="frmAddPerson.$invalid || uploadme.src == '' || uploadme.src == null " />
             <a href="#/" class="btn btn-default">Cancel</a>
         </div>
     </div>

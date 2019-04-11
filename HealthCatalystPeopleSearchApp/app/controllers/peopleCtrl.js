@@ -49,12 +49,18 @@
             };
         }])
         .controller('personAddCtrl', ['$scope', '$location', 'dataService', function ($scope, $location, dataService) {
+            $scope.uploadme = {};
+            $scope.uploadme.src = "";
+            
             $scope.createPerson = function (persondto) {
+
+                var base64Image = $scope.uploadme.src.substring($scope.uploadme.src.indexOf(",") + 1);
                 var person = {
                     FirstName: persondto.FirstName.trim(),
                     LastName: persondto.LastName.trim(),
                     Age: persondto.Age,
                     Interests: persondto.Interests.trim(),
+                    Image: base64Image,
                     address: {
                         StreetAddress: persondto.StreetAddress.trim(),
                         City: persondto.City.trim(),
@@ -69,6 +75,6 @@
                 }, function () {
                     toastr.error('Error occured while adding a person');
                 });
-            };
+            }
         }])
 })();

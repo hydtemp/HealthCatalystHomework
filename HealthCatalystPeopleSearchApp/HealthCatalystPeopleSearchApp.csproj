@@ -175,9 +175,17 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\controllers\peopleCtrl.js" />
+    <Content Include="app\directive\directive.js" />
     <Content Include="app\shared\services\dataService.js" />
     <Content Include="app\templates\people.html" />
     <Content Include="app\templates\personAdd.html" />
+    <Content Include="App_Data\seed_images\dimebag.jfif" />
+    <Content Include="App_Data\seed_images\eddie.jfif" />
+    <Content Include="App_Data\seed_images\kurt.jfif" />
+    <Content Include="App_Data\seed_images\layne.jfif" />
+    <Content Include="App_Data\seed_images\maynard.jfif" />
+    <Content Include="App_Data\seed_images\thom.jfif" />
+    <Content Include="App_Data\seed_images\trent.jfif" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -247,9 +255,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />

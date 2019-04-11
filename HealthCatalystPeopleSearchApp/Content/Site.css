@@ -31,3 +31,7 @@ table td {
     word-wrap: break-word;
     overflow: hidden;
 }
+.imgSmall {
+    height: 60px;
+    width: 60px;
+}

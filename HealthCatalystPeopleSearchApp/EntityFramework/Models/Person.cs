@@ -22,8 +22,8 @@ namespace HealthCatalystPeopleSearchApp.EntityFramework.Models
         [Required]
         public string Interests { get; set; }
 
-        //[Required]
-        //public byte[] Image { get; set; }
+        [Required]
+        public byte[] Image { get; set; }
 
         [Required]
         public Address Address{ get; set; }
