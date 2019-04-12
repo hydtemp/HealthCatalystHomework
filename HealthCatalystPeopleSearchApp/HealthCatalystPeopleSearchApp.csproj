@@ -175,7 +175,8 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\controllers\peopleCtrl.js" />
-    <Content Include="app\directive\directive.js" />
+    <Content Include="app\directive\fileUploadDirective.js" />
+    <Content Include="app\directive\fileValidDirective.js" />
     <Content Include="app\shared\services\dataService.js" />
     <Content Include="app\templates\people.html" />
     <Content Include="app\templates\personAdd.html" />

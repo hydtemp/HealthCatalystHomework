@@ -12,8 +12,9 @@
             scope: {
                 fileread: "="
             },
-            link: function (scope, element, attributes) {
+            link: function (scope, element, attributes, ctrl) {
                 element.bind("change", function (changeEvent) {
+                    //load file bytes
                     var reader = new FileReader();
                     reader.onload = function (loadEvent) {
                         scope.$apply(function () {
@@ -26,5 +27,4 @@
         };
         return fileread;
     }
-
 })();

@@ -10,7 +10,7 @@ namespace HealthCatalystPeopleSearchApp.Repository
     {
         private readonly IPeopleDbContext _dbContext;
 
-        public PeopleRepository(PeopleDbContext dbContext)
+        public PeopleRepository(IPeopleDbContext dbContext)
         {
             _dbContext = dbContext;
         }

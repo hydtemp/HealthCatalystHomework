@@ -8,17 +8,21 @@
             $scope.itemsPerPage = 5;
             $scope.dataLoading = false;
             $scope.searchText = "";
+            $scope.isSaving = false;
 
             getData();
 
             function getData() {
                 $scope.dataLoading = true;
+                $scope.isSaving = true;
                 dataService.getPeople().then(function (result) {
                     $scope.dataLoading = false;
+                    $scope.isSaving = false;
                     $scope.personList = result;
                 })
                     .finally(function () {
                         $scope.dataLoading = false;
+                        $scope.isSaving = false;
                     });
             }
 
@@ -33,12 +37,15 @@
 
             $scope.searchPeople = function (searchText) {
                 $scope.dataLoading = true;
+                $scope.isSaving = true;
                 dataService.searchPeople(searchText).then(function (result) {
                     $scope.dataLoading = false;
+                    $scope.isSaving = false;
                     $scope.personList = result;
                 }, function () {
                     toastr.error('Error in fetching people that match search term: ' + searchText);
                 }).finally(function () {
+                    $scope.isSaving = false;
                     $scope.dataLoading = false;
                 });
             };
@@ -51,9 +58,8 @@
         .controller('personAddCtrl', ['$scope', '$location', 'dataService', function ($scope, $location, dataService) {
             $scope.uploadme = {};
             $scope.uploadme.src = "";
-            
-            $scope.createPerson = function (persondto) {
 
+            $scope.createPerson = function (persondto) {
                 var base64Image = $scope.uploadme.src.substring($scope.uploadme.src.indexOf(",") + 1);
                 var person = {
                     FirstName: persondto.FirstName.trim(),

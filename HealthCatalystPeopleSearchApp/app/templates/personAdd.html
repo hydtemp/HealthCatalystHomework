@@ -1,6 +1,5 @@
-﻿<h2>Health Catalyst - People Search Application</h2>
-<form class="form-horizontal" name="frmAddPerson" ng-submit="createPerson(persondto)" novalidate>
-    <h4>Add A New Person</h4>
+﻿<form class="form-horizontal" name="frmAddPerson" ng-submit="createPerson(persondto)" novalidate>
+    <h3>Add Person</h3>
     <hr />
     <div class="form-group">
         <label class="col-lg-2 control-label">First Name</label>
@@ -14,7 +13,7 @@
     <div class="form-group">
         <label class="col-lg-2 control-label">Last Name</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" name="lastname" ng-model="persondto.LastName" ng-maxlength="50" required />
+            <input type="text" class="form-control" name="lastname" ng-model="persondto.LastName" required />
             <span class="text-danger" ng-show="(frmAddPerson.lastname.$touched || frmAddPerson.lastname.$dirty) && frmAddPerson.lastname.$invalid">
                 <span ng-show="frmAddPerson.lastname.$error.required">Last name must be specified</span>
             </span>
@@ -69,7 +68,7 @@
     <div class="form-group">
         <label class="col-lg-2 control-label">Zip Code</label>
         <div class="col-lg-10">
-            <input type="number" class="form-control" name="zipcode" ng-model="persondto.ZipCode" ng-pattern="/^[0-9]{5}$/" required />
+            <input type="text" class="form-control" name="zipcode" ng-model="persondto.ZipCode" ng-pattern="/^[0-9]{5}$/" required />
             <span class="text-danger" ng-show="(frmAddPerson.zipcode.$touched || frmAddPerson.zipcode.$dirty) && (frmAddPerson.zipcode.$invalid)">
                 <span ng-show="frmAddPerson.zipcode.$error.required">Zip Code must be specified</span>
                 <span ng-show="frmAddPerson.zipcode.$error.pattern">Zip code must be a a 5 digit non-negative integer.</span>
@@ -88,9 +87,12 @@
     <div class="form-group">
         <label class="col-lg-2 control-label" for="image">Picture</label>
         <div class="col-lg-10">
-            <input type="file" class="form-control" name="picture" fileread="uploadme.src" ng-model="uploadme.src" ngf-pattern="'image/*'"accept="image/*" ngf-max-size="2MB" required/>
+            <input type="file" class="form-control" name="picture" valid-file fileread="uploadme.src" ng-model="uploadme.src" ngf-pattern="'image/*'" accept="image/*" max-size="2999" required />
             <span class="text-danger" ng-show="(frmAddPerson.picture.$touched || frmAddPerson.picture.$dirty) && (frmAddPerson.picture.$invalid)">
                 <span ng-show="frmAddPerson.picture.$error.required">Picture must be selected</span>
+                <span ng-show="frmAddPerson.picture.$error.size">Picture size must not be larger than 3 MB</span>
+                <!--TODO: Wasn't able to get the file size validation to work. Currently, files smaller than 3 MB upload fine,
+                    but larger file are failing-->
             </span>
         </div>
     </div>
